@@ -1,0 +1,45 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>django portal</title>
+<script>
+var check = function() {
+  if (document.getElementById('password').value ==
+    document.getElementById('confirm_password').value) {
+    document.getElementById('message').style.color = 'green';
+    document.getElementById('message').innerHTML = 'Password matched';
+  } else {
+    document.getElementById('message').style.color = 'red';
+    document.getElementById('message').innerHTML = 'password does not match';
+  }
+}
+var redirect = function() {
+  if (document.getElementById('password').value ==
+    document.getElementById('confirm_password').value) {
+    window.location.href = "{% url 'log_in'%}";
+  } 
+}
+
+</script>
+</head>
+
+<form>
+Enter your name:-
+<input type="char" required pattern="[A-Za-z]+"  title="Only character accepted"><br><br>
+Enter your phone number:-
+<input type="text" pattern="[0-9]{10}" title="Enter 10 digit mobile number" required><br><br>
+Enter your email address:-
+<input type="text" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" title="Enter valid email id" required ><br><br>
+Enter your password:-
+<input type="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercaseletter, and at least 8 or more characters" required><br><br>
+Re-Enter yor password:-
+<input type="password" id="confirm_password" onkeyup='check();' required>
+<span id='message'></span>
+<br><br>
+<input type="button" onclick='redirect();' value="Login">
+</form>
+</html>
+
